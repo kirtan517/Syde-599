@@ -36,10 +36,10 @@ targets = torch.tensor(weights_and_biases['targets']).float().unsqueeze(1)
 
 predictions = model(input_data)
 loss_fn = torch.nn.MSELoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=0.0001)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
-n_epochs = 2    # number of epochs to run
-batch_size = 200  # size of each batch
+n_epochs = 200    # number of epochs to run
+batch_size = 10  # size of each batch
 batches_per_epoch = len(input_data) // batch_size
 
 loss = loss_fn(predictions, targets)
@@ -63,17 +63,18 @@ for epoch in range(n_epochs):
         # update weights
         optimizer.step()
     loss_history.append(loss)
-    
-# plt.figure(figsize=(10, 6))
-# plt.plot(loss_history, label='Data over Time', color='blue')
-# plt.title('Variable over Time')
-# plt.xlabel('Time')
-# plt.ylabel('Variable Value')
-# plt.grid(True)
-# plt.legend()
-# plt.tight_layout()
-# plt.autoscale(enable=True, axis='y', tight=True)  # Auto-scaling the y-axis
 
-# plt.show()
+# Create a figure and axis
+plt.figure(figsize=(10,6))
+plt.plot([l.detach().numpy() for l in loss_history])
+
+# Add titles and labels
+plt.title('Training Loss Over Time')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.grid(True)
+
+# Show the plot
+plt.show()
 
 print(f"After training loss: {loss/2}")
