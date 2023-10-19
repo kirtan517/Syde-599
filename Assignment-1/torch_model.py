@@ -41,7 +41,7 @@ loss_function = nn.MSELoss(reduction="mean")
 print(input_data.shape)
 print(targets.shape)
 
-
+loss_history = []
 n_epochs = 10
 for i in range(n_epochs):
     output = model(input_data)
@@ -50,6 +50,7 @@ for i in range(n_epochs):
     print(loss)
     optimizer.step()
     optimizer.zero_grad()
+    loss_history.append(loss)
 
 
 
@@ -84,16 +85,16 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 #     loss_history.append(loss)
 #
 # # Create a figure and axis
-# plt.figure(figsize=(10,6))
-# plt.plot([l.detach().numpy() for l in loss_history])
+plt.figure(figsize=(10,6))
+plt.plot([l.detach().numpy() for l in loss_history])
 #
 # # Add titles and labels
-# plt.title('Training Loss Over Time')
-# plt.xlabel('Epochs')
-# plt.ylabel('Loss')
-# plt.grid(True)
+plt.title('Training Loss Over Time')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.grid(True)
 #
 # # Show the plot
-# plt.show()
+plt.show()
 #
 # print(f"After training loss: {loss/2}")

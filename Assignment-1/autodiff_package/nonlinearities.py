@@ -5,7 +5,6 @@ class Relu():
     '''
     Relu with forward and backward pass
     '''
-
     def __init__(self):
         pass
 
