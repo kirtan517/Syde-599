@@ -10,9 +10,6 @@ class MatrixMul:
         self.matrixA = None
         self.matrixB = None
 
-    def __call__(self):
-        pass
-
     def forward(self, matrixA, matrixB):
         # matrixA is of Variable type
         # matrixB is of variable type
@@ -21,7 +18,7 @@ class MatrixMul:
         self.matrixB = matrixB
         self.value = self.matrixA.value @ self.matrixB.value
 
-        return self.value
+        return self
 
     def backward(self, value, learning_rate):
         # value # matrix
@@ -42,7 +39,7 @@ class Add:
         self.f_input1 = f_input1
         self.f_input2 = f_input2
         self.value = f_input1.value + f_input2.value
-        return self.value
+        return self
 
     def backward(self, b_grad, learning_rate):
         self.grad = b_grad * np.ones(self.value.shape)
@@ -63,7 +60,7 @@ class ReLU:
         self.prevOperation = prevOperation
         self.value = np.where(self.prevOperation.value < 0, 0, self.prevOperation.value)
         # self.value values will be positive
-        return self.value
+        return self
 
     def backward(self, value, learning_rate):
         temp = np.ones(self.value.shape)

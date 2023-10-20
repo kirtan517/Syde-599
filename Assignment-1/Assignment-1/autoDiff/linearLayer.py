@@ -30,8 +30,8 @@ class Linear:
             x -> type Variable or Bias
         """
         self.input = x
-        self.value = self.matmul.forward(x, self.weight)
-        self.value = self.addition.forward(self.matmul, self.bias)
+        z = self.matmul.forward(x, self.weight)
+        z = self.addition.forward(z, self.bias)
         self.finalOperation = self.addition
         if self.activation_function:
             self.value = self.activation.forward(self.addition)

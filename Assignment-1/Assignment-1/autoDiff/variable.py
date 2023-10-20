@@ -17,7 +17,7 @@ class Variable:
             self.gradients = []
 
     def forward(self):
-        return self.value
+        return self
 
     def backward(self, value, learning_rate):
         if self.requires_grad:
