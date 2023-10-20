@@ -52,13 +52,24 @@ class Add:
 
 
 class ReLU:
+    """
+        ReLU Operator
+    """
 
     def __init__(self):
+        """
+            self.prevOperation -> Object of pervious Operation
+            self.value -> type numpy array final value obtained after performing the forward pass
+        """
         self.result = None
         self.value = None
         self.prevOperation = None
 
     def forward(self, prevOperation):
+        """
+        :param prevOperation: Object of pervious Operation
+        :return: 
+        """
         # lastOperation  will be the object of matrix mul
         self.prevOperation = prevOperation
         self.value = np.where(self.prevOperation.value < 0, 0, self.prevOperation.value)

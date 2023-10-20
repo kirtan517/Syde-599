@@ -28,6 +28,7 @@ class Linear:
         """
             Performs a forward pass for a Linear Layer.
             x -> type Variable or Bias
+            return -> Object of most recent operation
         """
         self.input = x
         self.value = self.matmul.forward(x, self.weight)
