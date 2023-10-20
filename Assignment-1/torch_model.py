@@ -20,7 +20,7 @@ class SimpleNN(nn.Module):
         return x
     
 
-with open('param.pkl', 'rb') as f:
+with open('assignment-one-test-parameters.pkl', 'rb') as f:
     weights_and_biases = pickle.load(f)
 
 model = SimpleNN()
@@ -50,7 +50,7 @@ for i in range(n_epochs):
     print(loss)
     optimizer.step()
     optimizer.zero_grad()
-    loss_history.append(loss)
+    loss_history.append(loss/2)
 
 
 
