@@ -25,7 +25,7 @@ class RegressionLoss:
         """
         self.original = original
         self.predicted = predicted
-        self.value = np.mean((self.original.value - self.predicted.value) ** 2)
+        self.value = np.mean((self.original.value - self.predicted.value) ** 2) / 2
         return self
 
     def backward(self, grad, learning_rate):
@@ -35,7 +35,7 @@ class RegressionLoss:
         :param learning_rate: step size
         :return: None
         """
-        self.dldy = (self.predicted.value - self.original.value) * grad * 2 / self.original.shape[0]
+        self.dldy = (self.predicted.value - self.original.value) * grad  / self.original.shape[0]
         self.predicted.backward(self.dldy, learning_rate)
 
 
