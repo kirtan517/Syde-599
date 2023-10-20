@@ -12,11 +12,13 @@ class SimpleNN(nn.Module):
         self.fc2 = nn.Linear(10, 10)
         self.fc3 = nn.Linear(10, 1)
         self.relu = nn.ReLU()
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))
         x = self.fc3(x)
+        x = self.sigmoid(x)
         return x
     
 
@@ -33,11 +35,12 @@ model.fc3.weight.data = torch.tensor(weights_and_biases['w3']).float()
 model.fc3.bias.data = torch.tensor(weights_and_biases['b3']).float()
 
 input_data = torch.tensor(weights_and_biases['inputs']).float()
-targets = torch.tensor(weights_and_biases['targets']).float().unsqueeze(1)
+# targets = torch.tensor(weights_and_biases['targets']).float().unsqueeze(1)
+targets = torch.ones((200,1))
 # targets = torch.reshape(targets,(200,1))
 optimizer = optim.SGD(model.parameters(), lr=0.01)
 
-loss_function = nn.MSELoss(reduction="mean")
+loss_function = nn.BCELoss(reduction="mean")
 print(input_data.shape)
 print(targets.shape)
 
@@ -54,9 +57,9 @@ for i in range(n_epochs):
 
 
 
-predictions = model(input_data)
-loss_fn = torch.nn.MSELoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+# predictions = model(input_data)
+# loss_fn = torch.nn.BCELosss()
+# optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
 # n_epochs = 200    # number of epochs to run
 # batch_size = 10  # size of each batch
@@ -85,16 +88,16 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 #     loss_history.append(loss)
 #
 # # Create a figure and axis
-plt.figure(figsize=(10,6))
-plt.plot([l.detach().numpy() for l in loss_history])
-#
-# # Add titles and labels
-plt.title('Training Loss Over Time')
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.grid(True)
-#
-# # Show the plot
-plt.show()
+# plt.figure(figsize=(10,6))
+# plt.plot([l.detach().numpy() for l in loss_history])
+# #
+# # # Add titles and labels
+# plt.title('Training Loss Over Time')
+# plt.xlabel('Epochs')
+# plt.ylabel('Loss')
+# plt.grid(True)
+# #
+# # # Show the plot
+# plt.show()
 #
 # print(f"After training loss: {loss/2}")
