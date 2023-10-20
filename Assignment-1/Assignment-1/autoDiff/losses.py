@@ -13,7 +13,7 @@ class RegressionLoss:
         self.original = original
         self.predicted = predicted
         self.value = np.mean((self.original.value - self.predicted.value) ** 2)
-        return self.value
+        return self
 
     def backward(self, value, learning_rate):
         ## Each of this functions should call the backward function of it's calle variables.
@@ -45,7 +45,7 @@ class BinaryLoss():
         self.logits = self.sigmoidFunciton(self.predicted.value)
         self.value = np.mean(
             self.original.value * np.log(self.logits) * -1 + -1 * np.log(1 - self.logits) * (1 - self.original.value))
-        return self.value
+        return self
 
     def __call__(self):
         pass

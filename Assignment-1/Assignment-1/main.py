@@ -103,7 +103,7 @@ def train(n_epochs, batch_size, learning_rate,printGradientFirstLayer):
             y = linear2.forward(y)
             y = linear3.forward(y)
 
-            loss_value = loss.forward(y_true, y)
+            loss_value = loss.forward(y_true, y).value
 
             losses.append(loss_value)
 
@@ -127,10 +127,10 @@ def train(n_epochs, batch_size, learning_rate,printGradientFirstLayer):
     # print(loss_value)
 
     print(losses)
-    PrintGradients(linear1,linear2,linear3)
-    Plot(losses)
+    # PrintGradients(linear1,linear2,linear3)
+    # Plot(losses)
 
 
 if __name__ == "__main__":
-    train(N_EPOCHS, 1, LEARNING_RATE,True)
+    # train(N_EPOCHS, 1, LEARNING_RATE,True)
     train(N_EPOCHS,BATCH_SIZE,LEARNING_RATE,False)
