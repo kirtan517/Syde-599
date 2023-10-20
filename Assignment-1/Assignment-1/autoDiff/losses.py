@@ -2,7 +2,9 @@ import numpy as np
 
 
 class RegressionLoss:
-
+    """
+    
+    """
     def __init__(self):
         self.dldy = None
         self.value = None
@@ -46,9 +48,6 @@ class BinaryLoss():
         self.value = np.mean(
             self.original.value * np.log(self.logits) * -1 + -1 * np.log(1 - self.logits) * (1 - self.original.value))
         return self
-
-    def __call__(self):
-        pass
 
     def backward(self, value, learning_rate):
         temp = -1 * self.original.value / self.logits + (1 - self.original.value) / (1 - self.logits)
