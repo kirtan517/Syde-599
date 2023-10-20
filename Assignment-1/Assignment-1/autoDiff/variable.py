@@ -1,4 +1,5 @@
 import numpy as np
+import copy
 
 
 class Variable:
@@ -22,8 +23,7 @@ class Variable:
         if self.requires_grad:
             self.value -= learning_rate * value
         if self.store_gradient:
-            # TODO: confirm if they want the gradients to be stored with learning rate multiplied or not
-            self.gradients.append(value.tolist())
+            self.gradients = copy.deepcopy(value).tolist()
 
     def __str__(self):
         string = f"For the Variable {self.name}"
@@ -43,5 +43,4 @@ class Bias(Variable):
         self.value -= self.update * learning_rate
 
         if (self.store_gradient):
-            # TODO: confirm if they want the gradients to be stored with learning rate multiplied or not
-            self.gradients.append(self.update.tolist())
+            self.gradients = copy.deepcopy(value).tolist()

@@ -66,7 +66,7 @@ def PrintGradients(*args):
         print(i)
 
 
-def train(n_epochs, batch_size, learning_rate):
+def train(n_epochs, batch_size, learning_rate,printGradientFirstLayer):
     trainset, params = dataloader()
     w1 = Variable(params["w1"].shape, data=params["w1"], name="w1", store_gradient=True)
     w2 = Variable(params["w2"].shape, data=params["w2"], name="w2", store_gradient=True)
@@ -91,6 +91,10 @@ def train(n_epochs, batch_size, learning_rate):
     # bookeeping the losses
     losses = []
 
+    #Print the gradient of 1pair of 1st layer
+    printGradientFirstLayer = printGradientFirstLayer
+
+
     # run through each of the epochs
     for _ in range(n_epochs):
         for x, y_true in get_batches(trainset[0], trainset[1], batch_size=batch_size):
@@ -106,6 +110,14 @@ def train(n_epochs, batch_size, learning_rate):
             # backward pass
             loss.backward(np.array([[1]]), learning_rate)
 
+            if(printGradientFirstLayer):
+                print("Layer 1 weight Gradients")
+                print(linear1.weight.gradients)
+                print("Layer 1 bias Gradients ")
+                print(linear1.bias.gradients)
+                return
+
+
     # Printing last loss
     # y = linear1.forward(x)
     # y = linear2.forward(y)
@@ -120,4 +132,5 @@ def train(n_epochs, batch_size, learning_rate):
 
 
 if __name__ == "__main__":
-    train(N_EPOCHS, BATCH_SIZE, LEARNING_RATE)
+    train(N_EPOCHS, 1, LEARNING_RATE,True)
+    train(N_EPOCHS,BATCH_SIZE,LEARNING_RATE,False)

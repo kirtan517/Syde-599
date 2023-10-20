@@ -70,5 +70,3 @@ class ReLU:
         temp = np.where(self.value <= 0, 0, temp)
         self.result = temp * value
         self.prevOperation.backward(self.result, learning_rate)
-
-

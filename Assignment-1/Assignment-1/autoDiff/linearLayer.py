@@ -3,9 +3,15 @@ from .operators import Add, MatrixMul, ReLU
 
 
 class Linear:
+    """
+       Fully-Connected Layer.
+    """
     def __init__(self, weight, bias, activation_function=False, name="layer"):
-        # weight and bias should be of type Variable
-        # activation_function True means we are using ReLU
+        """
+            weight and bias should be of type Variable
+            activation_function can be set to `True` to use ReLU in layer.
+            self.value -> type numpy array final value obtained after performing the forward pass
+        """
         self.value = None
         self.finalOperation = None
         self.input = None
@@ -19,6 +25,10 @@ class Linear:
             self.activation = ReLU()
 
     def forward(self, x):
+        """
+            Performs a forward pass for a Linear Layer.
+            x -> type Variable or Bias
+        """
         self.input = x
         self.value = self.matmul.forward(x, self.weight)
         self.value = self.addition.forward(self.matmul, self.bias)
@@ -29,6 +39,12 @@ class Linear:
         return self.finalOperation
 
     def backward(self, grad, learning_rate):
+        """
+            Performs a backward pass for a Linear Layer.
+            grad -> gradients obtained from the previous layer during backpropogation
+            learning_rate -> step size
+            Just call the backward method of the last action performing class
+        """
         if self.activation_function:
             self.activation.backward(grad, learning_rate)
         else:
