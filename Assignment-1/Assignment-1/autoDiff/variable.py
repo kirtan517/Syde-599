@@ -17,13 +17,14 @@ class Variable:
         """
         self.shape = inputShapes
         self.requires_grad = requires_grad
-        self.data = data.copy()
         self.name = name
+        self.data = data
         self.store_gradient = store_gradient
         if type(self.data) == type(None):
             self.value = np.random.rand(*self.shape)  # 2d vector
         else:
             self.value = data
+            self.data = data.copy()
         if self.store_gradient:
             self.gradients = []
 

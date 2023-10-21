@@ -3,7 +3,7 @@ import pickle
 from autoDiff import Variable, Bias, Linear, RegressionLoss
 import matplotlib.pyplot as plt
 
-N_EPOCHS = 10
+N_EPOCHS = 5
 BATCH_SIZE = 200
 LEARNING_RATE = 0.01
 
@@ -121,18 +121,20 @@ def train(n_epochs, batch_size, learning_rate,printGradientFirstLayer):
 
 
     # Printing last loss
-    # y = linear1.forward(x)
-    # y = linear2.forward(y)
-    # y = linear3.forward(y)
-    #
-    # loss_value = loss.forward(y_true, y)
-    # print(loss_value)
+    y = linear1.forward(x)
+    y = linear2.forward(y)
+    y = linear3.forward(y)
+
+    loss_value = loss.forward(y_true, y).value
+    losses.append(loss_value)
+
 
     print(losses)
     # PrintGradients(linear1,linear2,linear3)
-    # Plot(losses)
+    Plot(losses)
 
 
 if __name__ == "__main__":
-    # train(N_EPOCHS, 1, LEARNING_RATE,True)
+    train(N_EPOCHS, 1, LEARNING_RATE,True)
+    print("\n\n")
     train(N_EPOCHS,BATCH_SIZE,LEARNING_RATE,False)

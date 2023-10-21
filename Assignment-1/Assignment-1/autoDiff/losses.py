@@ -35,7 +35,7 @@ class RegressionLoss:
         :param learning_rate: step size
         :return: None
         """
-        self.dldy = (self.predicted.value - self.original.value) * grad  / self.original.shape[0]
+        self.dldy = (self.predicted.value - self.original.value) * grad / self.original.value.shape[0]
         self.predicted.backward(self.dldy, learning_rate)
 
 
