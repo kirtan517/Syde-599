@@ -94,8 +94,6 @@ def train(n_epochs, batch_size, learning_rate,printGradientFirstLayer):
     #Print the gradient of 1pair of 1st layer
     printGradientFirstLayer = printGradientFirstLayer
 
-    # eache layer gradient the weight matrix 2 * 10 then average will be also 2 * 10  average over all exaples
-
 
     # run through each of the epochs
     for _ in range(n_epochs):
