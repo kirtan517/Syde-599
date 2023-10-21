@@ -1,5 +1,12 @@
+## SYDE 599 Deep Learning Autodifferentiation Assignment
+Completed by:
+Clayton Haight
+Danlei Geng
+Kirtan Kanani
+Liam Calder
+Samuel Diaz
 
-## How to run the code
+## How to Run the Code
 
 The 'main.py' file contains the code related to the creation of the test network using our autodifferentiation package and all the resulting values from the test. Simply run the 'main.py' file to run the tests. You can set the number of epochs, batch size and learning rate at the beginning of the file.
 
