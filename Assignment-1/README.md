@@ -1,9 +1,9 @@
 ## SYDE 599 Deep Learning Autodifferentiation Assignment
 Completed by:
-Clayton Haight
-Danlei Geng
-Kirtan Kanani
-Liam Calder
+Clayton Haight,
+Danlei Geng,
+Kirtan Kanani,
+Liam Calder,
 Samuel Diaz
 
 ## How to Run the Code
